@@ -19,18 +19,11 @@ RUN set -ex && \
       software-properties-common \
       wget \
       tree \
-      xz-utils \
-      unzip \
       default-jre \
       nodejs && \
     apt-get clean && \
     dotnet tool install --global dotnet-sonarscanner && \
-    wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip && \
-    unzip -q sonar-scanner-cli-*.zip && \
-    rm sonar-scanner-cli-*.zip && \
-    mv sonar-scanner-*-linux /opt/sonar-scanner && \
     dotnet --info && \
     java -version && \
     node --version &&\
-    npm --version && \
-    sonar-scanner -v
+    npm --version
