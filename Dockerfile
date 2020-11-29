@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2
 
 ENV NODE_VERSION 14.15.1
 
-ENV PATH="$PATH:/opt/sonar-scanner/bin"
+ENV PATH="$PATH:/opt/sonar-scanner/bin:/root/.dotnet/tools"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -ex && \
@@ -16,6 +16,7 @@ RUN set -ex && \
       apt-utils \
       wget \
       tree \
+      default-jre \
       xz-utils \
       unzip && \
     ARCH= && dpkgArch="$(dpkg --print-architecture)" && \
@@ -57,6 +58,7 @@ RUN set -ex && \
     # smoke tests
     node --version &&\
     npm --version && \
+    dotnet tool install --global dotnet-sonarscanner && \
     wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip && \
     unzip -q sonar-scanner-cli-*.zip && \
     rm sonar-scanner-cli-*.zip && \
