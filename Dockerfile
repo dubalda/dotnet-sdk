@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2
+FROM mcr.microsoft.com/dotnet/sdk:3.1.405-buster
 
 ENV NODE_VERSION 14.15.1
 
